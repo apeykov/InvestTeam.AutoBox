@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>InvestTeam.AutoBox.Domain</AssemblyName>
+    <RootNamespace>InvestTeam.AutoBox.Domain</RootNamespace>
+  </PropertyGroup>
+
+</Project>
