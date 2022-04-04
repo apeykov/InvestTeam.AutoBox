@@ -55,6 +55,34 @@ namespace InvestTeam.AutoBox.SelfService.Web.API.Helper
             return result;
         }
 
+        public async Task<OperationResult<Order>> UpdateOrder(OrderDTO orderDTO)
+        {
+            OperationResult<Order> result = new OperationResult<Order>();
+
+            try
+            {
+                result = await service.SetOrder(orderDTO);
+
+                foreach (Order order in result.Entities)
+                    order.Vechicle.Orders = null;
+            }
+            catch (Exception ex)
+            {
+                var order = new Order
+                {
+                    Description = orderDTO.Description,
+                    Vechicle = new Vechicle
+                    {
+                        Identity = orderDTO.Vechicle.Number,
+                        Model = orderDTO.Vechicle.Model,
+                        Color = (Color)orderDTO.Vechicle.Color
+                    }
+                };
+                result.AddException(ex, order);
+            }
+            return result;
+        }
+
         public async Task<OperationResult<Order>> RemoveOrder(string identity)
         {
             OperationResult<Order> result = new OperationResult<Order>();

@@ -68,6 +68,43 @@
             return responseMessage;
         }
 
+        [Route("UpdateOrder")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateOrder([FromBody] OrderDTO options)
+        {
+            OperationResult<Order> result;
+            ObjectResult responseMessage;
+            try
+            {
+                result = await orderHelper.UpdateOrder(options);
+                if (!result.HasErrors)
+                {
+                    responseMessage = StatusCode(200, result.Entities.First());
+                }
+                else
+                {
+                    var errorMessage = "Error while updating Order";
+                    responseMessage = StatusCode(400, errorMessage);
+                }
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+
+            WebApiLogEntryDTO webApiLogEntry = new WebApiLogEntryDTO()
+            {
+                Endpoint = "CreateOrder",
+                HttpVerb = HttpRequestType.PUT,
+                Request = $"Update Order with display identity { result.Entities.First().Identity }",
+                Response = responseMessage.StatusCode.ToString(),
+                RequestParams = options.ToString()
+            };
+            await logger.RestLog<Order>(webApiLogEntry, result);
+
+            return responseMessage;
+        }
+
         [Route("SearchOrders")]
         [HttpGet]
         public async Task<IActionResult> SearchOrders([FromQuery] string search)

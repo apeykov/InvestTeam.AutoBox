@@ -5,13 +5,16 @@
     using InvestTeam.AutoBox.Domain.Attributes;
     using InvestTeam.AutoBox.Domain.Entities;
     using InvestTeam.AutoBox.Domain.Enums;
+    using System.ComponentModel.DataAnnotations;
 
     public class VechicleDTO : IMapFrom<Vechicle>
     {
         [Filter]
+        [Required]
         public string Number { get; set; }
 
         [Filter]
+
         public Color? Color { get; set; }
 
         [Filter]

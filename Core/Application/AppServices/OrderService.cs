@@ -57,8 +57,6 @@
         {
             var result = new OperationResult<Order>();
 
-            IDataRepository<Order> orders = unitOfWork.Repository<Order>();
-
             Order order = orders.FindBy(u => u.Identity == orderInputData.Identity).FirstOrDefault<Order>();
 
             if (order == null)
