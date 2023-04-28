@@ -47,7 +47,7 @@ namespace SelfService.Web.API
                 {
                     await roleManager.CreateAsync(new IdentityRole(roleNameManager));
                 }
-                if (!await roleManager.RoleExistsAsync(roleNameMechanic))
+                if (!await roleManager.RoleExistsAsync(roleNameMechanic)) 
                 {
                     await roleManager.CreateAsync(new IdentityRole(roleNameMechanic));
                 }
