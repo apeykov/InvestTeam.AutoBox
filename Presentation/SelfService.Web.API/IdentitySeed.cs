@@ -39,7 +39,7 @@ namespace SelfService.Web.API
                     scope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
 
                 string roleNameManager = config["AppRole:Role"] ?? "ManagerTest1";
-                string roleNameMechanic = config["AppRole:Role"] ?? "Mechanic";
+                string roleNameMechanic = config["AppRole:Role"] ?? "MechanicTest2";
                 string userName = config["AppMainAccount:User"] ?? "admin@test.com";
                 string password = config["AppMainAccount:Password"] ?? "St@n!2345";
 
