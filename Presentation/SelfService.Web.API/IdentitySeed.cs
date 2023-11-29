@@ -40,7 +40,7 @@ namespace SelfService.Web.API
 
                 string roleNameManager = config["AppRole:Role"] ?? "ManagerTest1_1_2_02";
                 string roleNameMechanic = config["AppRole:Role"] ?? "MechanicTest2";
-                string userName = config["AppMainAccount:User"] ?? "admin@test.com";
+                string userName = config["AppMainAccount:User"] ?? "admin@test.com_1";
                 string password = config["AppMainAccount:Password"] ?? "St@n!2345";
 
                 if (!await roleManager.RoleExistsAsync(roleNameManager))
